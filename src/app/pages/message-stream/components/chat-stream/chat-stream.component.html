@@ -1,0 +1,83 @@
+<div class="text-center">
+  <div class="row" style="height: 88vh">
+    <div
+      class="col-8"
+      style="border: 1px solid rgb(212, 212, 212); border-radius: 10px"
+    >
+      <p style="font-size: x-large; margin-top: 10px" class="text-start">
+        LIVE
+      </p>
+      <div
+        style="border: 1px solid rgb(212, 212, 212); border-radius: 10px"
+        class="p-2"
+      >
+        <div
+          class="row justify-content-center"
+          *ngIf="remoteStream && localStream"
+        >
+          <div class="col-lg-8">
+            <div class="box-stream">
+              <ng-container *ngIf="isRemoteStream">
+                <p>remoteStream</p>
+                <video
+                  [srcObject]="remoteStream"
+                  class="remote"
+                  autoplay
+                ></video>
+              </ng-container>
+
+              <ng-container *ngIf="isLocalStream">
+                <p>localStream</p>
+                <video
+                  *ngIf="isLocalStream"
+                  [muted]="true"
+                  [srcObject]="localStream"
+                  class="local"
+                  autoplay
+                ></video>
+              </ng-container>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="">
+        <p style="font-size: x-large" class="text-start">Message</p>
+
+        <ng-container *ngFor="let item of items">
+          <p-panel
+            [header]="item.isMe ? 'ฉันเอง' : 'เพื่อนฉัน'"
+            styleClass="mb-2"
+          >
+            {{ item.text }}
+          </p-panel>
+        </ng-container>
+
+        <form class="row g-2 mb-4" (submit)="onSubmit()">
+          <div class="col-lg-8">
+            <div class="p-input-icon-left w-100">
+              <i class="pi pi-comment"></i>
+              <input
+                type="text"
+                pInputText
+                class="w-100"
+                placeholder="พิมพ์ข้อความที่นี่..."
+                [(ngModel)]="text"
+                name="text"
+              />
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <button
+              pButton
+              label="ส่งข้อความ"
+              class="w-100 p-button-danger"
+              icon="pi pi-send"
+            ></button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
