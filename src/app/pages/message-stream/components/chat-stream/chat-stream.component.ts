@@ -43,8 +43,11 @@ export class ChatStreamComponent implements OnInit {
   /* -------------------------------------------------------------------------- */
   onSubmit() {
     this._http
-      .post('http://localhost:3000/chat/sent-messages', {
-        ...this.form.value,
+      .post('http://192.168.1.185:3000/chat/sent-messages', {
+        user_id: this.form.value.user_id,
+        send_message: this.form.value.send_message,
+        receive_user: this.form.value.receive_user,
+        room_chat: this.form.value.room_chat ?? null,
       })
       .subscribe();
   }

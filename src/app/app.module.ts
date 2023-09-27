@@ -12,7 +12,7 @@ import { RoomComponent } from './pages/room/room.component';
 import { HttpClientModule } from '@angular/common/http';
 import { SocketIoConfig, SocketIoModule } from 'ngx-socket-io';
 
-const config: SocketIoConfig = { url: 'http://localhost:3000/', options: {} };
+const config: SocketIoConfig = { url: 'http://192.168.1.185:3000/', options: {} };
 
 @NgModule({
   declarations: [AppComponent],

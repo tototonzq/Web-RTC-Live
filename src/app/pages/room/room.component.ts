@@ -34,7 +34,6 @@ export class RoomComponent implements OnInit {
     receive_user: new FormControl<number>(7, [Validators.required]),
     room_chat: new FormControl<string | null>('', [Validators.required]),
   });
-  room_chat_id: FormControl = new FormControl('', [Validators.required]);
 
   /* -------------------------------------------------------------------------- */
   /*                                    OnIn                                    */
@@ -54,7 +53,7 @@ export class RoomComponent implements OnInit {
   /* -------------------------------------------------------------------------- */
   onSubmit() {
     this._http
-      .post('http://localhost:3000/chat/sent-messages', {
+      .post('http://192.168.1.185:3000/chat/sent-messages', {
         ...this.form.value,
       })
       .subscribe();
