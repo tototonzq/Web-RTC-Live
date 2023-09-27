@@ -1,0 +1,54 @@
+<div class="col">
+  <div class="row">
+    <p style="font-size: x-large" class="text-start">CHAT</p>
+  </div>
+
+  <div>
+    <p style="font-size: x-large" class="text-start">Message</p>
+    <ng-container *ngFor="let item of msg">
+      <p-panel
+        [header]="item.user_id == '7' ? 'Miiiine' : item.user_id"
+        styleClass="mb-2"
+      >
+        {{ item.send_message }}
+      </p-panel>
+    </ng-container>
+
+    <form [formGroup]="form" class="row g-2 mb-4" (submit)="onSubmit()">
+      <div class="col-lg-1">
+        <div class="p-input-icon-left w-100">
+          <i class="pi pi-user"></i>
+          <input
+            type="text"
+            pInputText
+            formControlName="user_id"
+            class="w-100"
+            placeholder="user_id"
+            name="text"
+          />
+        </div>
+      </div>
+      <div class="col">
+        <div class="p-input-icon-left w-100">
+          <i class="pi pi-comment"></i>
+          <input
+            type="text"
+            pInputText
+            class="w-100"
+            formControlName="send_message"
+            placeholder="send_message"
+            name="text"
+          />
+        </div>
+      </div>
+      <div class="col-lg-2">
+        <button
+          pButton
+          label="ส่งข้อความ"
+          class="w-100 p-button-danger"
+          icon="pi pi-send"
+        ></button>
+      </div>
+    </form>
+  </div>
+</div>

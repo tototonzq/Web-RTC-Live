@@ -14,4 +14,13 @@ export const routes: Routes = [
     path: 'message-stream',
     loadChildren: () => import('./pages/message-stream/message-stream.module'),
   },
+  {
+    path: 'room',
+    loadChildren: () => import('./pages/room/room.module'),
+  },
+  {
+    path: 'room-chat-history',
+    loadChildren: () =>
+      import('./pages/room-chat-history/room-chat-history.module'),
+  },
 ];

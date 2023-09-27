@@ -19,5 +19,7 @@ export class AppComponent {
       label: 'Simple Message Stream Answer',
       routerLink: ['/message-stream/answer'],
     },
+    { label: 'Room Chat', routerLink: ['/room'] },
+    { label: 'Room Chat History', routerLink: ['/room-chat-history'] },
   ];
 }

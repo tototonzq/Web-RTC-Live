@@ -1,11 +1,14 @@
 <div class="text-center">
-  <div class="row" style="height: 88vh">
+  <div class="row" style="height: fit-content">
     <div
       class="col-8"
       style="border: 1px solid rgb(212, 212, 212); border-radius: 10px"
     >
-      <p style="font-size: x-large; margin-top: 10px" class="text-start">
-        LIVE
+      <p
+        style="font-size: x-large; margin-top: 10px"
+        class="text-start text-bg-danger p-2 rounded-top"
+      >
+        LIVE <i class="pi pi-video" style="font-size: 1rem"></i>
       </p>
       <div
         style="border: 1px solid rgb(212, 212, 212); border-radius: 10px"
@@ -18,22 +21,24 @@
           <div class="col-lg-8">
             <div class="box-stream">
               <ng-container *ngIf="isRemoteStream">
-                <p>remoteStream</p>
+                <p>สำหรับผู้ชม</p>
                 <video
                   [srcObject]="remoteStream"
                   class="remote"
                   autoplay
+                  style="width: 100%"
                 ></video>
               </ng-container>
 
               <ng-container *ngIf="isLocalStream">
-                <p>localStream</p>
+                <p>สำหรับสตรีม</p>
                 <video
                   *ngIf="isLocalStream"
                   [muted]="true"
                   [srcObject]="localStream"
                   class="local"
                   autoplay
+                  style="width: 100%"
                 ></video>
               </ng-container>
             </div>
@@ -44,26 +49,51 @@
     <div class="col">
       <div class="">
         <p style="font-size: x-large" class="text-start">Message</p>
-
-        <ng-container *ngFor="let item of items">
+        <ng-container *ngFor="let item of msg">
           <p-panel
-            [header]="item.isMe ? 'ฉันเอง' : 'เพื่อนฉัน'"
+            [header]="item.user_id == '7' ? 'Miiiine' : item.user_id"
             styleClass="mb-2"
           >
-            {{ item.text }}
+            {{ item.send_message }}
           </p-panel>
         </ng-container>
 
-        <form class="row g-2 mb-4" (submit)="onSubmit()">
-          <div class="col-lg-8">
+        <form [formGroup]="form" class="row g-2 mb-4" (submit)="onSubmit()">
+          <div class="col">
+            <div class="p-input-icon-left w-100">
+              <i class="pi pi-user"></i>
+              <input
+                type="text"
+                pInputText
+                class="w-100"
+                placeholder="ผู้ใช้งาน"
+                formControlName="user_id"
+                name="text"
+              />
+            </div>
+          </div>
+          <div class="col">
+            <div class="p-input-icon-left w-100">
+              <i class="pi pi-home"></i>
+              <input
+                type="text"
+                pInputText
+                class="w-100"
+                formControlName="receive_user"
+                placeholder="ถึงผู้ใช้งาน"
+                name="text"
+              />
+            </div>
+          </div>
+          <div class="col-12">
             <div class="p-input-icon-left w-100">
               <i class="pi pi-comment"></i>
               <input
                 type="text"
                 pInputText
+                formControlName="send_message"
                 class="w-100"
                 placeholder="พิมพ์ข้อความที่นี่..."
-                [(ngModel)]="text"
                 name="text"
               />
             </div>
